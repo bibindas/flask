@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body background="http://www.smeadvisor.com/wp-content/uploads/2014/07/online-security-1.jpg">
+
+<div class="container">
+  <h2><font color="white">signup</font></h2>
+  <input id="uname" name="name" placeholder="Username" ><br>
+  <input id="pasw" type="password" number="number" placeholder="Password" ><br>
+  <input id="cpasw" type="password" number="number" placeholder="Confirm password" ><br>
+  <button type="submit" onclick="login()">Signup</button>
+</div>
+<script type="text/javascript">
+  function login(){
+    username=document.getElementById("uname").value;
+    password=document.getElementById("pasw").value;
+    confirmpassword=document.getElementById("cpasw").value;
+    $.post("/signupp/",{'username':username,'password':password,'confirmpassword':confirmpassword},function(data){
+     var details=data["details"]
+     if (details=="success"){
+      window.location='/home';
+     }
+     else{
+     $("#edi").empty()
+    $("#edi").append(details)
+    }
+    });
+  }
+</script>
+<font color="red">
+<div id="edi">
+  <th>
+    
+    </th>
+  
+</div>  
+</font>
+
+<a href="/"><font size="4" color="white">Back</font></a><br>
+
+</body>
+</html>

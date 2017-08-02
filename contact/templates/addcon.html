@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add contact</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  Logged in as:{{username}}<br>
+
+<div class="container">
+  <h2>Add contact</h2>
+  <input id="addnam" name="name" placeholder="Name..." ><br>
+  <input id="addnum" number="number" placeholder="Number..." ><br>
+  <button type="submit" onclick="addcon()">Add</button>
+</div>
+<script type="text/javascript">
+  function addcon(){
+    nam=document.getElementById("addnam").value;
+    num=document.getElementById("addnum").value;
+    $.post("/add",{'name':nam,'number':num},function(data){
+     var det=data["details"]
+     details=det
+     $("#edi").empty()
+    $("#edi").append(details)
+    });
+  }
+</script>
+<div id="edi">
+  <th>
+    
+  </th>
+  
+</div>  
+
+<a href="/home">Home</a><br>
+<a href="/logout">Logout</a><br>
+
+</body>
+</html>

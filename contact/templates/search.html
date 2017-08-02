@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>All detials</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  Logged in as:{{username}}<br>
+
+<div class="container">
+  <h2>CONTACT DETAILS</h2>
+  <input name="name" id="search" type="text" onkeyup="searchcon()" placeholder="Search contact">
+  <button onclick="searchcon()">Ok</button>  
+<script type="text/javascript">
+
+function searchcon()
+{
+  a= document.getElementById("search").value;
+  
+  $.get("search/",{name: a}, function(data){
+    var name=data["name"]
+    number=data["number"]
+    $("#cha").empty()
+    var details = ""
+    for (i=0;i<number.length;i++){
+    details=details + "<tr><td>"+name[i]+"</td><td>"+number[i]+"</td></tr>"
+    }
+    $("#cha").append(details)
+
+  });
+  
+
+}
+</script>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Contact Name</th>
+        <th>Contact number</th>
+      </tr>
+    </thead>
+
+    <tbody id="cha">
+    	{% for i in lename %}
+		  <tr>
+
+        <td>{{name[i]}}</td>
+        <td>{{number[i]}}</td>
+         
+		 </tr>
+	   	{% endfor %}   	
+    </tbody>
+  </table>
+</div>
+<a href="/home">Home</a><br>
+<a href="/logout">Logout</a><br>
+
+</body>
+</html>

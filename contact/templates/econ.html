@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>edit detials</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  Logged in as:{{username}}<br>
+
+<div class="container">
+  <h2>Edit contact</h2>
+  <input id="edit" name="name" placeholder="Name..." ><br>
+  <input id="editnum" number="number" placeholder="New number..." ><br>
+  <button type="submit" onclick="editcon()">Modify</button>
+</div>
+<script type="text/javascript">
+  function editcon(){
+    nam=document.getElementById("edit").value;
+    num=document.getElementById("editnum").value;
+    $.post("/editnum",{'name':nam,'number':num},function(data){
+     var det=data["details"]
+     details=det
+     $("#edi").empty()
+    $("#edi").append(details)
+    });
+  }
+</script>
+<div id="edi">
+  <th></th>
+  
+</div>  
+
+<a href="/home">Home</a><br>
+<a href="/logout">Logout</a><br>
+
+</body>
+</html>
